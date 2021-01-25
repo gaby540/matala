@@ -1,0 +1,271 @@
+<html lang="he" dir="rtl">
+   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+           <title>מועדון כדורגל מכבי חיפה - מטלה 2 דניאל סוקולוב</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+       let shirtType = {
+    "shirt": 10,
+    "tank-top": 10,
+    "sweater": 20,
+    "hoodie": 30,
+    "coat": 50,
+}
+
+let shirtColor = {
+    "red": 0,
+    "green": 5,
+    "blue": -2,
+    "white": 0,
+}
+
+let shirtSizePercentage = {
+    "S": -10,
+    "M": 0,
+    "L": 0,
+    "XL": 10,
+}
+
+let logo = 3;
+
+function calculatePrice() {
+    // סוג חולצה
+    let selectedShirtTypePrice = 0;
+    let selectedShirtType = getSelectedShirtType();
+    if(selectedShirtType){
+        selectedShirtTypePrice = shirtType[selectedShirtType];
+    }
+    // אחוזים בבחירת צבע
+    let selectedColor = document.getElementById("color-dropdown").value;
+    let selectedColorPrice = shirtColor[selectedColor];
+    // אחוזים בבחירת חולצה
+    let selectedShirtSizePercentage = 0;
+    let selectedShirtSize = getSelectedShirtSize();
+    if(selectedShirtSize){
+        selectedShirtSizePercentage = shirtSizePercentage[selectedShirtSize];
+    }
+    // לוגו
+    let totalLogoPrice = getTotalPriceOfLogo();
+
+    // חישוב כולל
+    let totalPriceOfAllItems = selectedShirtTypePrice + selectedColorPrice +totalLogoPrice;
+    // חישוב של אחוזים
+    totalPriceOfAllItems = totalPriceOfAllItems + (totalPriceOfAllItems*(selectedShirtSizePercentage/100));
+
+    document.getElementById("price").innerHTML = "סך הכל לתשלום = "+totalPriceOfAllItems+ " שקלים";
+}
+
+// כפתורים דגם חולצה
+function getSelectedShirtType() {
+    var radios = document.getElementsByName('shirt-type');
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            return radios[i].value;
+        }
+    }
+    return false;
+}
+
+function getSelectedShirtSize() {
+    var radios = document.getElementsByName('shirt-size');
+
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            return radios[i].value;
+        }
+    }
+    return false;
+}
+
+function getTotalPriceOfLogo(){
+    let totalLogoPrice = 0;
+    if(document.getElementById("forward").checked){
+        totalLogoPrice= totalLogoPrice+logo;
+    }
+    if(document.getElementById("backward").checked){
+        totalLogoPrice= totalLogoPrice+logo;
+    }
+    if(document.getElementById("right").checked){
+        totalLogoPrice= totalLogoPrice+logo;
+    }
+    if(document.getElementById("left").checked){
+        totalLogoPrice= totalLogoPrice+logo;
+    }
+    return totalLogoPrice;
+}
+       </script>
+<style>
+       
+       body {
+    background-color: whitesmoke;
+    text-align: right;
+}
+
+.bs {
+    border: 1px solid;
+}
+
+.my-img {
+    width: auto;
+}
+
+.from-section {
+    width: 50%;
+    border: 0.5px solid grey;
+    border-radius: 20px;
+    align-items: center;
+}
+
+
+.cursor{
+    cursor: pointer;
+}
+    /** menu top **/
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    height: 50px;
+    text-align: center;
+  }
+  .topnav a {
+    float: none;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 15px;
+    text-decoration: none;
+    font-size: 17px;
+    vertical-align: bottom;
+    line-height: 3;
+  }
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+   .topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+    font-family: arial;
+  }
+       </style>
+</head>
+
+<body>
+    <div class="topnav">
+            <a  href="index.html">עמוד הבית - מחוברים לחיים</a>
+            <a href="actors.html">שחקנים</a>
+            <a href="similarmovies.html">סרטים דומים</a>
+            <a class="active" href="order.html">מעבר למטלה 3+2</a>
+          </div>  
+    <div class="col-12">
+    
+        <div class="container d-flex justify-content-center">
+            
+            <div class="from-section p-4 my-2">
+                <div class="container text-center">
+                   
+                    <img class="my-img" src="https://upload.wikimedia.org/wikipedia/he/thumb/0/0c/%D7%A1%D7%9E%D7%9C_%D7%9E%D7%9B%D7%91%D7%99_%D7%97%D7%99%D7%A4%D7%94_2020.png/440px-%D7%A1%D7%9E%D7%9C_%D7%9E%D7%9B%D7%91%D7%99_%D7%97%D7%99%D7%A4%D7%94_2020.png" alt="Image">
+                </div>
+                <h2 class="my-4 text-center">מועדון כדורגל מכבי חיפה</h2>
+                            
+                              <form action="https://formspree.io/f/moqpkgzq" method="POST">
+               <div class="form-group">
+                <label class="bold" for="fname">שם פרטי</label>
+                <input type="text" id="fname" name="fname" maxlength="20">
+               </div>
+               <div class="form-group">
+                <label class="bold" for="lname">שם משפחה</label>
+                <input type="text" id="lname" name="lname" maxlength="20">
+              </div>
+              <div class="form-group">
+                <label class="bold">מספר הזמנה</label>
+                <input type="text" name="orderNumber" placeholder="Name Id" size="30" value="29760734" disabled>
+        </div>
+                   
+                    <div class="form-group" id="shirtType">
+                        <label for="shirt-type">סוג לבוש:</label>
+                        <br>
+                        <label for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-type" value="shirt" checked>&nbsp;חולצה
+                        </label>
+                        <label class="ml-2" for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-type" value="tank-top">&nbsp;גופיה
+                        </label>
+                        <label class="ml-2" for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-type" value="sweater">&nbsp;סוודר
+                        </label>
+                        <label class="ml-2" for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-type" value="hoodie">&nbsp;קפוצ'ון
+                        </label>
+                        <label class="ml-2" for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-type" value="coat">&nbsp;מעיל      
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="color-dropdown">צבע:</label>
+                        <select class="form-control" name="color-dropdown" id="color-dropdown">
+                            <option value="white">לבן</option>
+                            <option value="red">אדום</option>
+                            <option value="green">ירוק</option>
+                            <option value="blue">כחול</option>
+                           
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="shirt-size">מידה:</label>
+                        <br>
+                        <label for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-size" value="S">&nbsp;S
+                        </label>
+                        <label class="ml-2" for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-size" value="M">&nbsp;M
+                        </label>
+                        <label class="ml-2" for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-size" value="L">&nbsp;L
+                        </label>
+                        <label class="ml-2" for="radio-inline">
+                            <input class="cursor" type="radio" name="shirt-size" value="XL">&nbsp;XL
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="logo">מיקום סמל הקבוצה:</label>
+                        <br>
+                        <label for="checkbox-inline">
+                            <input class="cursor" type="checkbox" name="logo" id="forward">&nbsp;קדימה 
+                        </label>
+                        <label class="ml-2" for="checkbox-inline">
+                            <input class="cursor" type="checkbox" name="logo" id="backward">&nbsp;אחורה 
+                        </label>
+                        <label class="ml-2" for="checkbox-inline">
+                            <input class="cursor" type="checkbox" name="logo" id="right">&nbsp;שרוול ימין 
+                        </label>
+                        <label class="ml-2" for="checkbox-inline">
+                            <input class="cursor" type="checkbox" name="logo" id="left">&nbsp;שרוול שמאל
+                        </label>
+                    </div>
+                    <div class="form-group"> 
+                        <label for="address">כתובת:</label>
+                        <textarea class="form-control" name="address" id="address" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group"> 
+                        <button type="submit" class="btn btn-success">שליחה</button>
+                        <button type="button" class="btn btn-primary" onclick="calculatePrice()">חשב מחיר</button>    
+                        <button type="reset" class="btn btn-error" >נקה הזמנה</button>    
+
+                    </div>
+                    <div class="form-group"> 
+                        <label id="price"></label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
